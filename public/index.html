@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#071112">
+    <title>KSP SCRB Conversational Intelligence</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div id="loginView" class="login-shell">
+      <section class="login-visual" aria-label="Karnataka crime intelligence overview">
+        <div class="visual-map">
+          <div class="scan-corners" aria-hidden="true"></div>
+          <svg viewBox="0 0 560 620" role="img" aria-labelledby="mapTitle">
+            <title id="mapTitle">Karnataka synthetic intelligence network</title>
+            <path class="state-shape" d="M292 28 385 64 431 132 409 204 462 278 426 353 438 437 375 502 326 584 248 565 206 496 142 454 122 366 86 303 114 221 103 140 167 72Z"></path>
+            <g class="map-lines">
+              <path d="M190 96 246 181 214 278 286 356 262 472"></path>
+              <path d="M343 76 305 172 360 260 320 355 374 486"></path>
+              <path d="M127 300 228 308 322 278 440 292"></path>
+              <path d="M156 424 240 392 326 420 424 372"></path>
+            </g>
+            <g id="loginPulseLayer"></g>
+          </svg>
+          <div class="visual-readouts" aria-hidden="true">
+            <span><strong>LIVE</strong> Synthetic SCRB feed</span>
+            <span><strong>43</strong> station signals</span>
+            <span><strong>07</strong> watch priorities</span>
+          </div>
+        </div>
+        <div class="login-copy">
+          <span class="eyebrow">Karnataka State Police</span>
+          <h1>SCRB Conversational Crime Intelligence</h1>
+          <p>Natural language investigation console for crime pattern discovery, network analysis, and early-warning intelligence across synthetic statewide records.</p>
+          <div class="login-metrics" aria-label="Demo intelligence coverage">
+            <span><strong>Statewide</strong> synthetic coverage</span>
+            <span><strong>Role scoped</strong> access controls</span>
+            <span><strong>Audited</strong> query trail</span>
+          </div>
+        </div>
+      </section>
+      <section class="login-panel" aria-labelledby="loginTitle">
+        <div class="brand-lockup">
+          <span class="brand-mark">KSP</span>
+          <div>
+            <strong>Secure Demo Access</strong>
+            <span>Role-scoped prototype</span>
+          </div>
+        </div>
+        <h2 id="loginTitle">Choose an operational role</h2>
+        <p class="muted">Each role demonstrates a different access policy. Analyst views aggregate intelligence; investigator and supervisor can inspect named synthetic networks.</p>
+        <div class="profile-list">
+          <button class="profile-button" data-profile="investigator">
+            <strong>Investigator</strong>
+            <span>District-scoped chat, network leads, exports</span>
+          </button>
+          <button class="profile-button" data-profile="analyst">
+            <strong>SCRB Analyst</strong>
+            <span>Statewide aggregate analytics with masked identities</span>
+          </button>
+          <button class="profile-button" data-profile="supervisor">
+            <strong>Supervisor</strong>
+            <span>Statewide analytics, network view, audit trail</span>
+          </button>
+        </div>
+        <div class="security-strip" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p class="system-note">Prototype data is synthetic and intended for workflow validation only.</p>
+      </section>
+    </div>
+
+    <div id="appView" class="app-shell" hidden>
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="brand-lockup compact">
+            <span class="brand-mark">KSP</span>
+            <div>
+              <strong>SCRB AI</strong>
+              <span id="sessionRole">Role</span>
+            </div>
+          </div>
+          <button id="logoutButton" class="icon-button" type="button" aria-label="Sign out" title="Sign out">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17v2H5V5h5v2H7v10h3Zm4.5-1.5-1.4-1.4 2.1-2.1H9v-2h6.2l-2.1-2.1 1.4-1.4 4.5 4.5-4.5 4.5Z"></path></svg>
+          </button>
+        </div>
+
+        <section class="chat-panel" aria-label="Conversational intelligence assistant">
+          <div class="chat-toolbar">
+            <div>
+              <h2>Ask SCRB</h2>
+              <span id="scopeLabel">Loading scope</span>
+            </div>
+            <div class="toolbar-actions">
+              <label class="segmented" aria-label="Language">
+                <input type="radio" name="language" value="en" checked>
+                <span>EN</span>
+                <input type="radio" name="language" value="kn">
+                <span>ಕನ್ನಡ</span>
+              </label>
+              <button id="voiceButton" class="icon-button" type="button" aria-label="Start voice input" title="Start voice input">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v5a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2Z"></path></svg>
+              </button>
+              <button id="exportButton" class="icon-button" type="button" aria-label="Generate SCRB AI intelligence report" title="Generate SCRB AI intelligence report">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6V2Zm7 1.5V7h3.5L13 3.5ZM8 12h8v2H8v-2Zm0 4h8v2H8v-2Zm0-8h3v2H8V8Z"></path></svg>
+              </button>
+            </div>
+          </div>
+          <div id="messages" class="messages" aria-live="polite"></div>
+          <div class="prompt-strip" id="promptStrip"></div>
+          <form id="chatForm" class="chat-form">
+            <textarea id="chatInput" rows="2" placeholder="Ask about hotspots, networks, trends, early warnings..."></textarea>
+            <button class="send-button" type="submit">
+              <span>Ask</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 20 18-8L3 4v6l10 2-10 2v6Z"></path></svg>
+            </button>
+          </form>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <span class="eyebrow">Synthetic statewide intelligence</span>
+            <h1>Crime Records Conversational Command Center</h1>
+          </div>
+          <div class="status-cluster">
+            <span id="healthStatus" class="status-pill">Checking API</span>
+            <span id="generatedAt" class="status-pill neutral">No data yet</span>
+          </div>
+        </header>
+
+        <section class="kpi-grid" aria-label="Key metrics">
+          <article class="kpi-card accent-teal">
+            <i aria-hidden="true"></i>
+            <span>Total Records</span>
+            <strong id="recordCount">0</strong>
+          </article>
+          <article class="kpi-card accent-amber">
+            <i aria-hidden="true"></i>
+            <span>Open Cases</span>
+            <strong id="openCases">0</strong>
+          </article>
+          <article class="kpi-card accent-green">
+            <i aria-hidden="true"></i>
+            <span>Top Crime Type</span>
+            <strong id="topCrime">-</strong>
+          </article>
+          <article class="kpi-card accent-red">
+            <i aria-hidden="true"></i>
+            <span>Priority Hotspot</span>
+            <strong id="topHotspot">-</strong>
+          </article>
+        </section>
+
+        <section class="analytics-grid">
+          <article class="panel copilot-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>AI Investigation Copilot</h2>
+                <span>Proactive intelligence officer view: leads, relationships, anomalies, deployment, and reasoning</span>
+              </div>
+              <button id="copilotButton" class="quiet-button" type="button">Refresh Copilot</button>
+            </div>
+            <div id="copilotPanel" class="copilot-content"></div>
+          </article>
+
+          <article class="panel agent-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Investigator Agent</h2>
+                <span>Role-scoped action queue with explainable rationale</span>
+              </div>
+              <button id="agentButton" class="quiet-button" type="button">Run Agent</button>
+            </div>
+            <div id="agentPanel" class="agent-content"></div>
+          </article>
+
+          <article class="panel linkage-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>AI Case Linkage Engine</h2>
+                <span>Hidden case clusters from method, place, time, victim, suspect, vehicle, and communication signals</span>
+              </div>
+            </div>
+            <div class="linkage-layout">
+              <svg id="caseLinkageGraph" class="linkage-graph" viewBox="0 0 760 420" role="img" aria-label="AI case linkage graph"></svg>
+              <div id="caseLinkageClusters" class="linkage-list"></div>
+            </div>
+          </article>
+
+          <article class="panel timeline-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Investigation Timeline Reconstruction</h2>
+                <span>Interactive AI reconstruction from report, CCTV, phone movement, and associate contact events</span>
+              </div>
+            </div>
+            <div id="timelinePanel" class="timeline-panel-body"></div>
+          </article>
+
+          <article class="panel map-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Hotspot Detection</h2>
+                <span>Risk scoring by station, recency, severity, and open cases</span>
+              </div>
+              <button id="refreshButton" class="quiet-button" type="button">Refresh</button>
+            </div>
+            <div class="map-and-list">
+              <svg id="hotspotMap" class="hotspot-map" viewBox="0 0 620 620" role="img" aria-label="Synthetic Karnataka hotspot map"></svg>
+              <div id="hotspotList" class="rank-list"></div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Crime Trend</h2>
+                <span>Monthly volume with dominant pattern</span>
+              </div>
+            </div>
+            <svg id="trendChart" class="trend-chart" viewBox="0 0 720 320" role="img" aria-label="Crime trend chart"></svg>
+          </article>
+
+          <article class="panel network-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Criminal Network</h2>
+                <span>Persons, stations, crime types, and shared case links</span>
+              </div>
+            </div>
+            <svg id="networkGraph" class="network-graph" viewBox="0 0 720 420" role="img" aria-label="Criminal network graph"></svg>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Early Warnings</h2>
+                <span>Explainable prevention signals</span>
+              </div>
+            </div>
+            <div id="warningList" class="warning-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Socio-Demographic Signals</h2>
+                <span>Victim and accused distribution for outreach planning</span>
+              </div>
+            </div>
+            <div id="demographicBars" class="bar-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Behavioral Profiling</h2>
+                <span>Modus operandi, repeat locations, evidence tags, and role-safe repeat links</span>
+              </div>
+            </div>
+            <div id="behaviorProfiles" class="behavior-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Explainability Trail</h2>
+                <span>Latest query filters, sources, and guardrails</span>
+              </div>
+            </div>
+            <div id="auditPanel" class="audit-panel"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

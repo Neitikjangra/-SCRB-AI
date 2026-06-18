@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+data/audit_log.jsonl
+server.log
+server.out
+server.err
+.pytest_cache/
+.ruff_cache/
+node_modules/
+dist/
+build/
