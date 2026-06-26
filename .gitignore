@@ -1,7 +1,9 @@
 __pycache__/
 *.py[cod]
 data/audit_log.jsonl
+data/audit_log_node.jsonl
 server.log
+backend/node-server.log
 server.out
 server.err
 .pytest_cache/

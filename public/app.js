@@ -108,7 +108,12 @@ async function api(path, options = {}) {
   if (state.token) {
     headers.Authorization = `Bearer ${state.token}`;
   }
-  const response = await fetch(path, { ...options, headers });
+  let response;
+  try {
+    response = await fetch(path, { ...options, headers });
+  } catch {
+    throw new Error("API server is not reachable. Start the local server, then refresh this page.");
+  }
   const payload = await response.json().catch(() => ({}));
   if (!response.ok) {
     throw new Error(payload.error || `Request failed: ${response.status}`);
@@ -727,8 +732,6 @@ async function login(profile) {
 
   els.sessionRole.textContent = `${formatRole(state.user.role)} · ${state.user.badge_id}`;
   els.scopeLabel.textContent = `Scope: ${state.user.district_scope.join(", ")}`;
-  els.loginView.hidden = true;
-  els.appView.hidden = false;
   els.messages.innerHTML = "";
   addMessage(
     "assistant",
@@ -736,6 +739,8 @@ async function login(profile) {
     "Synthetic records only. Validate operational leads in approved systems."
   );
   await refreshAnalytics();
+  els.loginView.hidden = true;
+  els.appView.hidden = false;
 }
 
 async function sendChat(message) {
@@ -833,10 +838,22 @@ function logout() {
 function wireEvents() {
   document.querySelectorAll(".profile-button").forEach((button) => {
     button.addEventListener("click", async () => {
+      const buttons = [...document.querySelectorAll(".profile-button")];
+      buttons.forEach((item) => {
+        item.disabled = true;
+      });
       try {
         await login(button.dataset.profile);
+        setHealth(true, "API online");
       } catch (error) {
-        alert(error.message);
+        state.token = null;
+        state.user = null;
+        setHealth(false, "Login failed");
+        alert(`Login failed: ${error.message}`);
+      } finally {
+        buttons.forEach((item) => {
+          item.disabled = false;
+        });
       }
     });
   });
